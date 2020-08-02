@@ -35,12 +35,12 @@ export class PersonService {
 */
 
     async createPerson(personDto: CreatePersonDto): Promise<Person>{
-        const newPerson = new Person();        
+        const newPerson = new Person();                
         newPerson.nationalId = personDto.nationalId;
         newPerson.name = personDto.name;
         newPerson.lastName = personDto.lastName;
         newPerson.age = personDto.age;
-        newPerson.pictureUrl = personDto.pictureUrl;
+        newPerson.pictureUrl = personDto.pictureUrl;        
         return await this.personRepository.save(newPerson);
     }
 

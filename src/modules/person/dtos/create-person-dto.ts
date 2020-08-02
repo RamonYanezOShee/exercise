@@ -1,7 +1,7 @@
 export class CreatePersonDto {
-    nationalId: string;
-    name: string;
-    lastName: string;
-    age: number;
-    pictureUrl: string;
+    readonly nationalId: string;
+    readonly name: string;
+    readonly lastName: string;
+    readonly age: number;
+    readonly pictureUrl: string;
 }
