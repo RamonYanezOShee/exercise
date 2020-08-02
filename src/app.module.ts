@@ -22,7 +22,7 @@ import { PersonController } from './modules/person/controllers/person.controller
     TypeOrmModule.forFeature([Person])
   ],
 
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, PersonController],
+  providers: [AppService, PersonService],
 })
 export class AppModule {}
