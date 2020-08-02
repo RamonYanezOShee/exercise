@@ -3,6 +3,7 @@ import { Person } from '../entities/person.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreatePersonDto } from '../dtos/create-person-dto';
+import { Console } from 'console';
 //import { CreatePersonDto } from '../dtos/create-person-dto';
 
 @Injectable()
@@ -33,8 +34,8 @@ export class PersonService {
     }
 */
 
-    async create(personDto: CreatePersonDto){
-        const newPerson = new Person();
+    async createPerson(personDto: CreatePersonDto): Promise<Person>{
+        const newPerson = new Person();        
         newPerson.nationalId = personDto.nationalId;
         newPerson.name = personDto.name;
         newPerson.lastName = personDto.lastName;
@@ -44,7 +45,7 @@ export class PersonService {
     }
 
 
-    async update(personDto: CreatePersonDto, id: string){
+    async update(personDto: CreatePersonDto, id: string): Promise<Person>{
         const personTobeUpdated = await this.personRepository.findOne(id);        
         personTobeUpdated.name = personDto.name;
         personTobeUpdated.lastName = personDto.lastName;
@@ -55,7 +56,7 @@ export class PersonService {
 
 
 
-    async remove(id: number) {
+    async remove(id: number): Promise<any> {
         return await this.personRepository.delete(id);
     }
 
