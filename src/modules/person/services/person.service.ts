@@ -15,8 +15,6 @@ export class PersonService {
     ){}
 
 
-// Let's fill services operations: 
-
     async findAll(): Promise<Person[]> {
         return await this.personRepository.find();
     }
@@ -29,8 +27,9 @@ export class PersonService {
 
     async findByNationalityId(idNat: string): Promise<Person> {
         const person = await this.personRepository.findOne({ where: { nationalId: idNat} });
-        if(person == undefined){throw new Error('Person not found') ;}
-        // return new HttpException('number1 504', HttpStatus.GATEWAY_TIMEOUT);
+        if(person == undefined){
+            throw new Error("nf");
+        }
         return person;
     }
 
@@ -46,9 +45,9 @@ export class PersonService {
     }
 
 
-    async update(personDto: CreatePersonDto, id: string): Promise<Person>{
-        const personTobeUpdated = await this.personRepository.findOne(id);
-        if(personTobeUpdated == undefined){throw new Error('Person not found') ;}
+    async update(personDto: CreatePersonDto, natId: string): Promise<Person>{
+        const personTobeUpdated = await this.findByNationalityId(natId);
+        // if(personTobeUpdated == undefined){throw new Error('Person not found') ;}
         personTobeUpdated.name = personDto.name;
         personTobeUpdated.lastName = personDto.lastName;
         personTobeUpdated.age = personDto.age;
@@ -56,25 +55,11 @@ export class PersonService {
         return this.personRepository.save(personTobeUpdated);
     }
 
-
-
-    async remove(id: number): Promise<any> {
-        return await this.personRepository.delete(id);
+    async remove(natId: string): Promise<any> {
+        const personToBeDeleted = await this.findByNationalityId(natId);
+        //if(personToBeDeleted == undefined){throw new Error('Person not found') ;}
+        console.log('here?');
+        return await this.personRepository.delete(personToBeDeleted.id);
     }
-
-
-    /*
-    async removeFake(id: number): Promise<any> {
-        if (id == 1) {
-            return new HttpException('number1 504', HttpStatus.GATEWAY_TIMEOUT);
-          } else if (id == 2) {
-            return new HttpException('other 500', HttpStatus.INTERNAL_SERVER_ERROR);
-          }
-          else{
-              return error;
-          }        
-    }
-    */
-
-
+    
 }
