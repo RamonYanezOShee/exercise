@@ -1,6 +1,7 @@
-import { Controller, Get, Body, Post, Put, Delete, Res, HttpStatus, Param } from '@nestjs/common';
+import { Controller, Get, Body, Post, Put, Delete, Res, HttpStatus, Param, HttpException, BadRequestException, UnauthorizedException } from '@nestjs/common';
 import { PersonService } from '../services/person.service';
 import { CreatePersonDto } from '../dtos/create-person-dto';
+import { exception } from 'console';
 
 
 
@@ -9,7 +10,7 @@ export class PersonController {
 
     constructor(private personService: PersonService) {}
 
-    
+
     @Get()
     getAll(@Res() response){
         this.personService.findAll().then(personList => {
@@ -21,6 +22,7 @@ export class PersonController {
         );
     }
 
+    /*
     @Get(':id')
     getById(@Param('id') personId,@Res() response){
         this.personService.findOne(personId).then( personList => {
@@ -31,6 +33,20 @@ export class PersonController {
         }
         );
     }
+    */
+
+   @Get(':nationalId')
+   getById(@Param('nationalId') personId,@Res() response){
+       this.personService.findByNationalityId(personId).then( person => {
+           response.status(HttpStatus.OK).json(person);
+       }
+       ).catch( () => {
+           response.status(HttpStatus.NOT_FOUND).json({person: 'Person not found'});
+           //return new HttpException('Person not found', HttpStatus.NOT_FOUND);
+       }
+       );
+   }
+
 
 
     // TODO: IMPLEMENT OTHERS  ERROR TYPES  201, 400, 500
@@ -53,7 +69,7 @@ export class PersonController {
             response.status(HttpStatus.OK).json(person);
         }
         ).catch(() => {
-            response.status(HttpStatus.FORBIDDEN).json({person: 'Error updating person'});
+            response.status(HttpStatus.FORBIDDEN).json({person: 'exception'});
         }
         );
     }
@@ -71,6 +87,17 @@ export class PersonController {
     }
 
 
-
+/*
+    @Delete(':errortype')
+    deleteFake(@Res() response, @Param('errortype') errortype ){
+        // throw new HttpException('custom message', HttpStatus.FORBIDDEN); // this it works        
+        this.personService.removeFake(errortype).then( res => {
+            response.status(HttpStatus.OK).json(res);
+        }).catch(()=> {
+            response.status(HttpStatus.FORBIDDEN).json({person: 'exception default ? 403 '});
+        }
+        );
+    }
+*/
 
 }

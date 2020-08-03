@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus, UnauthorizedException, BadRequestException } from '@nestjs/common';
 import { Person } from '../entities/person.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreatePersonDto } from '../dtos/create-person-dto';
-import { Console } from 'console';
-//import { CreatePersonDto } from '../dtos/create-person-dto';
+import { error } from 'console';
+
 
 @Injectable()
 export class PersonService {
@@ -27,12 +27,13 @@ export class PersonService {
     }
 
 
-// this it will the real find method (but isn't real database id)    
-/*
-    async findByNationalityId(id: string): Promise<Person> {
-    return await this.personRepository.find()
+    async findByNationalityId(idNat: string): Promise<Person> {
+        const person = await this.personRepository.findOne({ where: { nationalId: idNat} });
+        if(person == undefined){throw new Error('Person not found') ;}
+        // return new HttpException('number1 504', HttpStatus.GATEWAY_TIMEOUT);
+        return person;
     }
-*/
+
 
     async createPerson(personDto: CreatePersonDto): Promise<Person>{
         const newPerson = new Person();                
@@ -46,7 +47,8 @@ export class PersonService {
 
 
     async update(personDto: CreatePersonDto, id: string): Promise<Person>{
-        const personTobeUpdated = await this.personRepository.findOne(id);        
+        const personTobeUpdated = await this.personRepository.findOne(id);
+        if(personTobeUpdated == undefined){throw new Error('Person not found') ;}
         personTobeUpdated.name = personDto.name;
         personTobeUpdated.lastName = personDto.lastName;
         personTobeUpdated.age = personDto.age;
@@ -59,6 +61,20 @@ export class PersonService {
     async remove(id: number): Promise<any> {
         return await this.personRepository.delete(id);
     }
+
+
+    /*
+    async removeFake(id: number): Promise<any> {
+        if (id == 1) {
+            return new HttpException('number1 504', HttpStatus.GATEWAY_TIMEOUT);
+          } else if (id == 2) {
+            return new HttpException('other 500', HttpStatus.INTERNAL_SERVER_ERROR);
+          }
+          else{
+              return error;
+          }        
+    }
+    */
 
 
 }
