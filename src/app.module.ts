@@ -11,7 +11,7 @@ import { PersonController } from './modules/person/controllers/person.controller
   imports: [    
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: 'host.docker.internal',
       port: 3306,
       username: 'userdb',
       password: 'userdb',
