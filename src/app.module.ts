@@ -6,6 +6,7 @@ import { Person } from './modules/person/entities/person.entity';
 import { PersonModule } from './modules/person/person.module';
 import { PersonService } from './modules/person/services/person.service';
 import { PersonController } from './modules/person/controllers/person.controller';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
