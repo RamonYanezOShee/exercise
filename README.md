@@ -17,8 +17,7 @@ Technology used in this project:
 * [Google Cloud Platform] - Meet your business challenges head on with cloud computing services from Google.
 * [GitHub] - Built for developers
 
-And of course Dillinger itself is open source with a [public repository][dill]
- on GitHub.
+
 This exams was published in a [public repository].
 
 
