@@ -1,75 +1,71 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+# 23people exam
 
-[travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
-[travis-url]: https://travis-ci.org/nestjs/nest
-[linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
-[linux-url]: https://travis-ci.org/nestjs/nest
+This exercise was developed for [23people]. 
+
+  - All source code is in master branch
+  - I'll put some references about how to build a docker image.
   
-  <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/dm/@nestjs/core.svg" alt="NPM Downloads" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://img.shields.io/travis/nestjs/nest/master.svg?label=linux" alt="Linux" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#5" alt="Coverage" /></a>
-<a href="https://gitter.im/nestjs/nestjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge"><img src="https://badges.gitter.im/nestjs/nestjs.svg" alt="Gitter" /></a>
-<a href="https://opencollective.com/nest#backer"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
-  <a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+### Tech
 
-## Description
+Technology used in this project:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+* [NestJS] - A progressive Node.js framework
+* [node.js] - evented I/O for the backend
+* [Visual Studio Code] - Code editing.Redefined.
+* [MySQL] - The world's most popular open source database
+* [Docker] - We help developers and development teams build and ship apps
+* [Google Cloud Platform] - Meet your business challenges head on with cloud computing services from Google.
+* [GitHub] - Built for developers
 
-## Installation
+And of course Dillinger itself is open source with a [public repository][dill]
+ on GitHub.
+This exams was published in a [public repository].
 
-```bash
+
+### Installation
+
+Install the dependencies and devDependencies and start the server.
+
+```sh
 $ npm install
-```
-
-## Running the app
-
-```bash
-# development
 $ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
-## Test
+NOTE: You have to install [MySQL] by your own and run scripts at script folder.
+      You can also run a mysql docker image
 
-```bash
-# unit tests
-$ npm run test
+### Docker
+To deploy in a Docker container.
 
-# e2e tests
-$ npm run test:e2e
+By default, the Docker will expose port 8080, also this app has that explicit port expose.
 
-# test coverage
-$ npm run test:cov
+```sh
+docker build -t .
 ```
 
-## Support
+To run app: 
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```sh
+docker run -d -p 8000:8080  <image-created>
+```
 
-## Stay in touch
+Verify the deployment by navigating to your server address in your preferred browser.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```sh
+localhost:8080
+```
+I highly recommend to use [Postman] for requests.
 
-## License
 
-  Nest is [MIT licensed](LICENSE).
+[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
+
+
+[23people]: <https://23people.io/>
+[NestJS]: <https://nestjs.com/>
+[Visual Studio Code]: <https://code.visualstudio.com/>
+[MySQL]: <https://dev.mysql.com/>
+[Docker]: https://www.docker.com/
+[Google Cloud Platform]: <https://cloud.google.com/>
+[GitHub]: <https://github.com/>
+[public repository]: <https://github.com/RamonYanezOShee/exercise>
+[postman]: <https://www.postman.com/>

@@ -7,7 +7,7 @@ import { response } from 'express';
 
 
 @UseInterceptors(Errorinterceptor)
-@Controller('person')
+@Controller('people')
 export class PersonController {
 
     constructor(private personService: PersonService) {}
