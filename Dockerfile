@@ -19,7 +19,7 @@ COPY . ./
 # Build the application
 RUN npm run build
 
-# Should I need expose port?
+# Expose Port
 EXPOSE 8080
 
 # Run the web service on container startup.
